@@ -1,0 +1,4 @@
+name: NoBedRespawnHandler
+version: '${version}'
+main: com.semivanilla.nobedrespawnhandler.NoBedRespawnHandler
+api-version: 1.19
