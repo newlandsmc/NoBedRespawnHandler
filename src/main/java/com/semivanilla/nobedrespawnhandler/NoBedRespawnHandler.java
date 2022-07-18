@@ -2,7 +2,6 @@ package com.semivanilla.nobedrespawnhandler;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.istack.internal.NotNull;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -32,7 +31,7 @@ public final class NoBedRespawnHandler extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this,this);
     }
 
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.hasPermission("respawnhandler.setspawnlocationinternal")) {
             sender.sendMessage("You don't have permission to use this command!");
             return true;
@@ -79,7 +78,7 @@ public final class NoBedRespawnHandler extends JavaPlugin implements Listener {
             getLogger().info("Player " + event.getPlayer().getName() + " has data file, loading data");
             try {
                 String json = new String(Files.readAllBytes(file.toPath()));
-                StoredLocation location = (StoredLocation)this.gson.fromJson(json, StoredLocation.class);
+                StoredLocation location = this.gson.fromJson(json, StoredLocation.class);
                 Location l = location.getLocation();
                 getLogger().info("Setting respawn location to " + l);
                 event.setRespawnLocation(l);
